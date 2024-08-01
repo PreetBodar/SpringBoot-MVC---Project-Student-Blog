@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Blog</title>
+    <link rel="stylesheet" th:href="@{blog2.css}">
+</head>
+<body>
+<div class="main_body">
+    <div class="msg_holder" th:each="post : ${posts}">
+        <div class="msg_body">
+            <div class="msg_header">
+                <div id="Username"><span th:text="${post.userPosted}"></span>e</div>
+                <div id="msg_title"><span th:text="${post.title}"></span></div>
+            </div>
+            <div class="msg_content">
+                <span th:text="${post.content}"></span>    </div>
+            <div class="msg_footer">
+                <button class="msg_likes">👍</button><spen style="margin-right: 15px;"><span th:text="${post.likes}"></span></spen>
+                <button class="msg_dislike">👎</button><spen style="margin-right: 15px;"><span th:text="${post.dislikes}"></span></spen>
+                <button class="msg_comments">💬</button><spen style="margin-right: 15px;"></spen>
+            </div>
+            <div class="comments_box">
+
+                <form action="homePage" method="post" id="comment_form">
+                    <input type="hidden" th:value="${post.id}" name="postId">
+                    <input name="comment" type="text" placeholder="Comment..." style="padding: 5px;border: none;background-color: transparent;">
+                    <select name="liking">
+                        <option value="like">Like</option>
+                        <option value="dislike">dislike</option>
+                    </select>
+                    <input type="submit" style="background-color: rgb(33, 118, 255); color: white;border-radius: 50px ;border: none;padding: 10px;">
+
+                </form>
+                <div class="comments">
+                    <div style="color: rgb(33, 118, 255); font-weight: bold;">Comments: </div>
+                    <span th:text="${post.lastComment}"></span> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

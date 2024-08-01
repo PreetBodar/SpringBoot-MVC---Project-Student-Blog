@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== Iconscout CSS ===== -->
+    <link rel="stylesheet" th:href="@{https://unicons.iconscout.com/release/v4.0.0/css/line.css}">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" th:href="@{/main.css}">
+
+    <title>Login & Registration Form</title>
+</head>
+<body>
+
+
+
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+
+            <!--Login Form -->
+            <span class="title" th:text="${note}"></span>
+
+            <form action="logIn" method="post">
+
+                <!-- Enter Username -->
+                <div class="input-field">
+                    <input type="text" placeholder="Enter your username" name="username" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+
+                <!-- Enter Password-->
+                <div class="input-field">
+                    <input type="password" class="password" name="password" placeholder="Enter your password" required>
+                    <i class="uil uil-lock icon"></i>
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+
+                <!-- Drop Down Menu for selecting roles-->
+                <div class="role-select">
+                    <select name="role"  required>
+                        <option value="" disabled selected>Select Your Role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+
+                <!-- Login Button -->
+                <div class="input-field button">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+
+            <div class="login-signup">
+                      <span class="text">Not a member?
+                        <a href="#" class="text signup-link">Signup Now</a>
+                      </span>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form signup">
+            <span class="title">Registration</span>
+
+            <form action="register" method="post">
+
+                <!-- Enter Your Username-->
+                <div class="input-field">
+                    <input type="text" placeholder="Enter your username" name="username" required>
+                    <i class="uil uil-user"></i>
+                </div>
+
+                <!--create your password-->
+                <div class="input-field">
+                    <input type="password" class="password" placeholder="Create a password" name="password" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+
+                <!-- Drop Down Menu for selecting roles-->
+                <div class="role-select">
+                    <select name="role" required>
+                        <option value="" disabled selected>Select Your Role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+
+                <!-- Terms and Conditions-->
+                <div class="checkbox-text" name="terms">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="termCon">
+                        <label for="termCon" class="text">I accepted all terms and conditions</label>
+                    </div>
+                </div>
+
+                <!-- SignUp Button -->
+                <div class="input-field button">
+                    <input type="submit" value="Signup">
+                </div>
+            </form>
+
+            <div class="login-signup">
+                    <span class="text">Already a member?
+                        <a href="#" class="text login-link">Login Now</a>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const container = document.querySelector(".container"),
+  pwShowHide = document.querySelectorAll(".showHidePw"),
+  pwFields = document.querySelectorAll(".password"),
+  signUp = document.querySelector(".signup-link"),
+  login = document.querySelector(".login-link");
+
+//   js code to show/hide password and change icon
+pwShowHide.forEach(eyeIcon =>{
+    eyeIcon.addEventListener("click", ()=>{
+        pwFields.forEach(pwField =>{
+            if(pwField.type ==="password"){
+                pwField.type = "text";
+
+                pwShowHide.forEach(icon =>{
+                    icon.classList.replace("uil-eye-slash", "uil-eye");
+                })
+            }else{
+                pwField.type = "password";
+
+                pwShowHide.forEach(icon =>{
+                    icon.classList.replace("uil-eye", "uil-eye-slash");
+                })
+            }
+        })
+    })
+})
+
+// js code to appear signup and login form
+signUp.addEventListener("click", ( )=>{
+    container.classList.add("active");
+});
+login.addEventListener("click", ( )=>{
+    container.classList.remove("active");
+});
+</script>
+</body>
+</html>

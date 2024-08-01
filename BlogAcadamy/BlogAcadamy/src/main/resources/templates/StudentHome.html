@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Blog</title>
+    <link rel="stylesheet" th:href="@{blog.css}">
+</head>
+<body>
+<div class="main_body">
+    <form id="upload_msg" class="upload_msg" action="Student" method="post">
+        <div class="box">
+            <input type="text" placeholder="title" name="title" class="p_title">
+            <input type="text" placeholder="message...." name="content" class="p_msg">
+        </div>
+        <input type="submit" value="Post" class="p_post">
+    </form>
+
+    <div class="msg_holder" th:each="post : ${posts}">
+        <div class="msg_body">
+            <div class="msg_header">
+                <div id="Username"><span th:text="${post.userPosted}"></span></div>
+                <div id="msg_title"><span th:text="${post.title}"></span></div>
+            </div>
+            <div class="msg_content">
+                <span th:text="${post.content}"></span>   </div>
+            <div class="msg_footer">
+                <button class="msg_likes">👍</button><spen style="margin-right: 15px;"><span th:text="${post.likes}"></span></spen>
+                <button class="msg_dislike">👎</button><spen style="margin-right: 15px;"> <span th:text="${post.dislikes}"></span></spen>
+                <button class="msg_comments">💬</button><spen style="margin-right: 15px;"><span th:text="${post.lastComment}"></span></spen>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+</body>
+</html>
